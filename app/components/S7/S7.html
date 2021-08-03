@@ -1,0 +1,323 @@
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/x-icon;base64,">
+<title>Application Title</title>
+<link rel="stylesheet" href="app/styles/app-style.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Wellkom | Be Well - Perform Well - Live Well Longer</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="app/styles/newcss.css">
+<link rel="stylesheet" href="app/styles/bootstrap.min.css">
+<link rel="stylesheet" href="app/styles/bootstrap-theme.min.css">
+<link rel="stylesheet" href="app/styles/fontAwesome.css">
+<link rel="stylesheet" href="app/styles/light-box.css">
+<link rel="stylesheet" href="app/styles/owl-carousel.css">
+<link rel="stylesheet" href="app/styles/templatemo-style.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
+<script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<div class="page-content">
+		<section id="v4" class="content-section">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h1>Personal <em>Notes</em></h1>
+                        </div>
+                        <button  style="background-color: transparent;border:none;" id="spechbtn3"><i id="mic1" class="fa fa-microphone" aria-hidden="true"></i></button>
+<div id="c3" >
+    <table  width="100%">
+      <tr>
+        <td><input id="subscriptionKey" type="hidden" type="text" size="40" value="bea8ac191ce041ecbcabc85e062630f5"></td>
+      </tr>
+      <tr>
+        <td><input type="hidden" id="serviceRegion" type="text" size="40" value="westeurope"></td>
+      </tr>
+     
+
+    </table>
+  </div>
+                      
+                        		 <form>
+                              <textarea  id="textbox45" name="text" cols="100" rows="10" class="form-control"></textarea>
+                           
+                            </form>
+                            <br>
+                            <br>
+
+                            <p>When will you try out this technique?</p>
+                            <br>
+                            <p >Day / Date :<button  style="background-color: transparent;border:none;" id="b1"><i class="fa fa-microphone" aria-hidden="true"></i></button></p> 
+                             <div id="c1">
+    <table  width="100%">
+      <tr>
+        <td><input id="subscriptionKey" type="hidden" type="text" size="40" value="bea8ac191ce041ecbcabc85e062630f5"></td>
+      </tr>
+      <tr>
+        <td><input type="hidden" id="serviceRegion" type="text" size="40" value="westeurope"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+
+                            <form>
+                            	<textarea style="  position:relative;"  id="t1" name="text" cols="100" rows="10" class="form-control"></textarea>
+                            	
+
+                            </form>
+      </tr>
+
+    </table>
+  </div>
+                            <br>
+                            <p>What will you do?  <button  style="background-color: transparent;border:none;" id="b2"><i class="fa fa-microphone" aria-hidden="true"></i></button></p>
+                            <div id="c2" style="display:none">
+    <table  width="100%">
+      <tr>
+        <td><input id="subscriptionKey" type="hidden" type="text" size="40" value="bea8ac191ce041ecbcabc85e062630f5"></td>
+      </tr>
+      <tr>
+        <td><input type="hidden" id="serviceRegion" type="text" size="40" value="westeurope"></td>
+      </tr>
+    
+
+    </table>
+  </div>
+                            <form>
+                              <textarea  id="t2" name="text" cols="100" rows="10" class="form-control"></textarea>
+                            </form>
+                            <br>
+                            <p>Add here any other resources you know of / come across:<button  style="background-color: transparent;border:none;" id="b3"><i class="fa fa-microphone" aria-hidden="true"></i></button></p>
+                             <div id="c5" style="display:none">
+    <table  width="100%">
+      <tr>
+        <td><input id="subscriptionKey" type="hidden" type="text" size="40" value="bea8ac191ce041ecbcabc85e062630f5"></td>
+      </tr>
+      <tr>
+        <td><input type="hidden" id="serviceRegion" type="text" size="40" value="westeurope"></td>
+      </tr>
+      
+
+    </table>
+  </div>
+                            <form>
+                              <textarea  id="t3" name="text" cols="100" rows="10" class="form-control"></textarea>
+                            </form>
+            </section>
+	</div>
+	<script>
+
+    // status fields and start button in UI
+    var textbox45;
+    var t1;
+    var t2;
+    var t3;
+    var spechbtn3;
+    var b1;
+    var b2;
+    var b3;
+
+    // subscription key and region for speech services.
+    var subscriptionKey, serviceRegion, languageTargetOptions, languageSourceOptions;
+    var SpeechSDK;
+    var recognizerone;
+
+      spechbtn3 = document.getElementById("spechbtn3");
+      b1 = document.getElementById("b1");
+      b2 = document.getElementById("b2");
+      b3 = document.getElementById("b3");
+      subscriptionKey = document.getElementById("subscriptionKey");
+      serviceRegion = document.getElementById("serviceRegion");
+
+      textbox45 = document.getElementById("textbox45");
+      t1 = document.getElementById("t1");
+      t2 = document.getElementById("t2");
+      t3 = document.getElementById("t3");
+
+
+      spechbtn3.addEventListener("click", function () {
+        spechbtn3.disabled = true;
+        spechbtn3.style.color="red";
+        textbox45.innerHTML = "";
+
+        if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+          alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+          spechbtn3.disabled = false;
+          return;
+        }
+        var speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+
+        speechConfig.speechRecognitionLanguage = "en-US";
+        let language = "en"
+        speechConfig.addTargetLanguage(language)
+
+        var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+        recognizerone = new SpeechSDK.TranslationRecognizer(speechConfig, audioConfig);
+
+        recognizerone.recognizeOnceAsync(
+          function (result) {
+            spechbtn3.disabled = false;
+            spechbtn3.style.color="black";
+            let translation = result.translations.get(language);
+            window.console.log(translation);
+            textbox45.innerHTML += translation;
+
+            recognizerone.close();
+            recognizerone = undefined;
+          },
+          function (err) {
+            spechbtn3.disabled = false;
+            spechbtn3.style.color="black";
+            textbox45.innerHTML += err;
+            window.console.log(err);
+
+            recognizerone.close();
+            recognizerone = undefined;
+          });
+      });
+      b1.addEventListener("click", function () {
+        b1.disabled = true;
+        b1.style.color="red";
+        t1.innerHTML = "";
+
+        if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+          alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+          b1.disabled = false;
+          return;
+        }
+        var speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+
+        speechConfig.speechRecognitionLanguage = "en-US";
+        let language = "en"
+        speechConfig.addTargetLanguage(language)
+
+        var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+        recognizerone = new SpeechSDK.TranslationRecognizer(speechConfig, audioConfig);
+
+        recognizerone.recognizeOnceAsync(
+          function (result) {
+            b1.disabled = false;
+            b1.style.color="black";
+            let translation = result.translations.get(language);
+            window.console.log(translation);
+            t1.innerHTML += translation;
+
+            recognizerone.close();
+            recognizerone = undefined;
+          },
+          function (err) {
+            b1.disabled = false;
+            b1.style.color="black";
+            t1.innerHTML += err;
+            window.console.log(err);
+
+            recognizerone.close();
+            recognizerone = undefined;
+          });
+      });
+       b2.addEventListener("click", function () {
+        b2.disabled = true;
+        b2.style.color="red";
+        t2.innerHTML = "";
+
+        if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+          alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+          b2.disabled = false;
+          return;
+        }
+        var speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+
+        speechConfig.speechRecognitionLanguage = "en-US";
+        let language = "en"
+        speechConfig.addTargetLanguage(language)
+
+        var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+        recognizerone = new SpeechSDK.TranslationRecognizer(speechConfig, audioConfig);
+
+        recognizerone.recognizeOnceAsync(
+          function (result) {
+            b2.disabled = false;
+            b2.style.color="black";
+            let translation = result.translations.get(language);
+            window.console.log(translation);
+            t2.innerHTML += translation;
+
+            recognizerone.close();
+            recognizerone = undefined;
+          },
+          function (err) {
+            b2.disabled = false;
+            b2.style.color="black";
+            t2.innerHTML += err;
+            window.console.log(err);
+
+            recognizerone.close();
+            recognizerone = undefined;
+          });
+      });
+
+      b3.addEventListener("click", function () {
+        b3.disabled = true;
+        b3.style.color="red";
+        t3.innerHTML = "";
+
+        if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+          alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+          b3.disabled = false;
+          return;
+        }
+        var speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+
+        speechConfig.speechRecognitionLanguage = "en-US";
+        let language = "en"
+        speechConfig.addTargetLanguage(language)
+
+        var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+        recognizerone = new SpeechSDK.TranslationRecognizer(speechConfig, audioConfig);
+
+        recognizerone.recognizeOnceAsync(
+          function (result) {
+            b3.disabled = false;
+            b3.style.color="black";
+            let translation = result.translations.get(language);
+            window.console.log(translation);
+            t3.innerHTML += translation;
+
+            recognizerone.close();
+            recognizerone = undefined;
+          },
+          function (err) {
+            b3.disabled = false;
+            b3.style.color="black";
+            t3.innerHTML += err;
+            window.console.log(err);
+
+            recognizerone.close();
+            recognizerone = undefined;
+          });
+      });
+
+      if (!!window.SpeechSDK) {
+        SpeechSDK = window.SpeechSDK;
+        spechbtn3.disabled = false;
+        b1.disabled=false;
+        b2.disabled=false;
+        b3.disabled=false;
+        spechbtn3.style.color="black";
+        b1.style.color="black";
+        b2.style.color="black";
+        b3.style.color="black";
+
+
+        document.getElementById('c3').style.display = 'block';
+        document.getElementById('c1').style.display = 'block';
+        document.getElementById('c2').style.display = 'block';
+        document.getElementById('c5').style.display = 'block';
+        document.getElementById('warning').style.display = 'none';
+      }
+
+  </script>
